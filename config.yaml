@@ -1,0 +1,27 @@
+name: "emf-service"
+api:
+  default_limit: 15
+  port: "8080"
+  # RSA Public Key used for JWT validation
+  # This is an example key pulled off the internet, DO NOT USE!
+  public_key: |
+    -----BEGIN PUBLIC KEY-----
+    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0
+    FPqri0cb2JZfXJ/DgYSF6vUpwmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/
+    3j+skZ6UtW+5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQAB
+    -----END PUBLIC KEY-----
+workers:
+  number: 0
+  total_queue_size: 5000
+  heartbeat_seconds: 15
+monitoring:
+  prometheus: false
+domains:
+  self: "http://127.0.0.1:8080"
+logging:
+  elasticsearch: false
+  endpoint: "http://127.0.0.1:9200"
+errors:
+  configPath: ./errors.yaml
+debug:
+  mode: false

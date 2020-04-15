@@ -1,0 +1,47 @@
+# This file is an example.
+# Any errors sent from within emf can be found in emf/context/errors/builtin_errors.go
+
+cbc:
+  401:
+    Unauthorized:
+      status_code: 401
+      name: Unauthorized
+      description: The API request sent by the Caller/Client cannot be performed
+        as the User associated with the JWT token in the API request
+        does not have access to this endpoint.
+      message:
+        en:
+          User with identifier '{{.Claims.tgt}}' and role '{{.Claims.rol}}' does
+          not have access.
+      data:
+
+    TokenExpired:
+      status_code: 401
+      name: TokenExpired
+      description: The JWT Token provided with the request is Expired.
+      message:
+        en: The provided access token expired at '{{.Claims.exp}}'.
+      data:
+
+    TokenInactive:
+      status_code: 401
+      name: TokenInactive
+      description: The JWT Token provided with the request is no longer Active
+        (the User logged out or switched roles).
+      message:
+        en:
+          The provided token with User '{{.Claims.tgt}}' and role '{{.Claims.rol}}'
+          is no longer active.
+      data:
+
+    TokenVerificationFailure:
+      status_code: 401
+      name: TokenVerificationFailure
+      description: The JWT Token Verfication request failed, so the API Request
+        could not be completed. Please try again.
+      message:
+        en:
+          "The provided token with User '{{.Claims.tgt}}' and role '{{.Claims.rol}}'
+          could not be verified, please try again. Error: '{{.Data.error}}'"
+      data:
+        error:
